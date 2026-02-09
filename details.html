@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Détails Pokémon</title>
+    <style>
+        body { font-family: sans-serif; padding: 20px; max-width: 600px; margin: auto; }
+        form { display: flex; flex-direction: column; gap: 10px; }
+        input { padding: 8px; }
+        .actions { margin-top: 20px; display: flex; gap: 10px; }
+        .danger { background-color: #ff4444; color: white; border: none; }
+        
+
+        #modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); justify-content: center; align-items: center; }
+        .modal-content { background: white; padding: 20px; border-radius: 5px; text-align: center; }
+    </style>
+</head>
+<body>
+    <a href="index.html">← Retour</a>
+    <h1 id="title">Détails du Pokémon</h1>
+
+    <form id="pokeForm">
+        <label>ID (Unique):</label>
+        <input type="number" id="id" required>
+        
+        <label>Nom (Français):</label>
+        <input type="text" id="nameFr" required>
+        
+        <label>Nom (Anglais):</label>
+        <input type="text" id="nameEn">
+        
+        <label>Type 1:</label>
+        <input type="text" id="type1" required>
+        
+        <label>Type 2 (Optionnel):</label>
+        <input type="text" id="type2">
+
+        <div class="actions">
+            <button type="button" onclick="savePokemon()" id="saveBtn">Enregistrer</button>
+            <button type="button" class="danger" onclick="openModal()" id="deleteBtn">Supprimer</button>
+        </div>
+    </form>
+
+    <div id="modal">
+        <div class="modal-content">
+            <p>Voulez-vous vraiment supprimer ce Pokémon ?</p>
+            <button class="danger" onclick="confirmDelete()">OUI, Supprimer</button>
+            <button onclick="closeModal()">Annuler</button>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+    <script>
+
+        const params = new URLSearchParams(window.location.search);
+        const id = params.get('id');
+        const isCreate = params.get('create');
+
+        if (isCreate) {
+            document.getElementById('title').innerText = "Créer un nouveau Pokémon";
+            document.getElementById('deleteBtn').style.display = 'none';
+        } else if (id) {
+            loadDetails(id);
+        }
+    </script>
+</body>
+</html>
