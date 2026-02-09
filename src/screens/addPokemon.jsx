@@ -14,12 +14,12 @@ const AddPokemon = () => {
         },
         type: [],
         base: {
-            HP: 0,
-            Attack: 0,
-            Defense: 0,
-            SpecialAttack: 0,
-            SpecialDefense: 0,
-            Speed: 0
+            HP: 45,
+            Attack: 45,
+            Defense: 45,
+            SpecialAttack: 45,
+            SpecialDefense: 45,
+            Speed: 45
         },
         image: ''
     });
@@ -91,6 +91,8 @@ const AddPokemon = () => {
         }
 
         try {
+            console.log('📤 Envoi des données:', formData);
+            
             const response = await fetch('http://localhost:3000/pokemons', {
                 method: 'POST',
                 headers: {
@@ -104,13 +106,16 @@ const AddPokemon = () => {
 
             if (!response.ok) {
                 const errorData = await response.json();
-                throw new Error(errorData.error || 'Failed to create pokemon');
+                console.error('❌ Erreur serveur:', errorData);
+                throw new Error(errorData.details || errorData.error || 'Failed to create pokemon');
             }
 
             const newPokemon = await response.json();
+            console.log('✅ Pokémon créé avec succès!', newPokemon);
             alert('Pokémon créé avec succès !');
             navigate(`/pokemonDetails/${newPokemon.id}`);
         } catch (err) {
+            console.error('❌ Erreur:', err);
             setError('Erreur lors de la création: ' + err.message);
         } finally {
             setLoading(false);
