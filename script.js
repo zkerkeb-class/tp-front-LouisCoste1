@@ -19,7 +19,11 @@ async function loadPokemons(page) {
             div.className = 'card';
     
             const name = poke.name.french || poke.name.english || "Sans nom";
-            div.innerHTML = `<h3>#${poke.id} ${name}</h3><p>${poke.type.join(', ')}</p>`;
+            div.innerHTML = `
+                <img src="${poke.image}" alt="${name}" style="width: 120px; height: 120px; object-fit: contain;">
+                <h3>#${poke.id} ${name}</h3>
+                <p>${poke.type.join(', ')}</p>
+            `;
             
            
             div.onclick = () => window.location.href = `details.html?id=${poke.id}`;

@@ -1,39 +1,13 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="fr">
-<head>
-    <meta charset="UTF-8">
-    <title>Pokedex TP</title>
-    <style>
-        /* Un peu de CSS pour que ce soit propre */
-        body { font-family: sans-serif; padding: 20px; max-width: 1000px; margin: auto; }
-        .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 20px; }
-        .card { border: 1px solid #ddd; padding: 15px; border-radius: 8px; text-align: center; cursor: pointer; transition: 0.3s; }
-        .card:hover { transform: translateY(-5px); box-shadow: 0 5px 15px rgba(0,0,0,0.1); }
-        .controls { margin-bottom: 20px; display: flex; justify-content: space-between; }
-        .pagination { margin-top: 20px; text-align: center; }
-        button { padding: 8px 15px; cursor: pointer; }
-    </style>
-</head>
-<body>
-    <h1>Gestionnaire de Pokémons</h1>
-    
-    <div class="controls">
-        <a href="details.html?create=true"><button>+ Créer un Pokémon</button></a>
-        <div>
-            <input type="text" id="searchInput" placeholder="Chercher un nom...">
-            <button onclick="searchPokemon()">Rechercher</button>
-        </div>
-    </div>
-
-    <div id="pokemon-list" class="grid">
-        </div>
-
-    <div class="pagination">
-        <button onclick="changePage(-1)">Précédent</button>
-        <span id="pageIndicator">Page 1</span>
-        <button onclick="changePage(1)">Suivant</button>
-    </div>
-
-    <script src="script.js"></script>
-</body>
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Pokédex Ultra</title>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.jsx"></script>
+  </body>
 </html>
