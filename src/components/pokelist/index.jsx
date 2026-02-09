@@ -84,7 +84,7 @@ const PokeList = ({ searchQuery = "" }) => {
         const matchesSearch = pokemonName.toLowerCase().includes(searchTerm.toLowerCase());
         const matchesType = selectedType === "all" || (pokemon.type && pokemon.type.some(t => t.toLowerCase() === selectedType.toLowerCase()));
         return matchesSearch && matchesType;
-    });
+    }).sort((a, b) => a.id - b.id); // Tri par ID croissant
 
     if (loading) {
         return <div className="loading">🔄 Chargement...</div>
