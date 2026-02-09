@@ -12,6 +12,8 @@ const PokeList = ({ searchQuery = "" }) => {
     const [error, setError] = useState(null);
     const [searchTerm, setSearchTerm] = useState("");
     const [selectedType, setSelectedType] = useState("all");
+    const [sortBy, setSortBy] = useState("id");
+    const [sortOrder, setSortOrder] = useState("asc");
 
     const types = ["all", "grass", "fire", "water", "bug", "normal", "poison", "electric", "ground", "fairy", "dragon", "psychic", "rock", "ghost", "ice", "fighting"];
 
@@ -84,7 +86,50 @@ const PokeList = ({ searchQuery = "" }) => {
         const matchesSearch = pokemonName.toLowerCase().includes(searchTerm.toLowerCase());
         const matchesType = selectedType === "all" || (pokemon.type && pokemon.type.some(t => t.toLowerCase() === selectedType.toLowerCase()));
         return matchesSearch && matchesType;
-    }).sort((a, b) => a.id - b.id); // Tri par ID croissant
+    }).sort((a, b) => {
+        let comparison = 0;
+        
+        switch(sortBy) {
+            case "id":
+                comparison = a.id - b.id;
+                break;
+            case "name":
+                const nameA = (a.name?.french || a.name?.english || '').toLowerCase();
+                const nameB = (b.name?.french || b.name?.english || '').toLowerCase();
+                comparison = nameA.localeCompare(nameB);
+                break;
+            case "hp":
+                comparison = (a.base?.HP || 0) - (b.base?.HP || 0);
+                break;
+            case "attack":
+                comparison = (a.base?.Attack || 0) - (b.base?.Attack || 0);
+                break;
+            case "defense":
+                comparison = (a.base?.Defense || 0) - (b.base?.Defense || 0);
+                break;
+            case "speed":
+                comparison = (a.base?.Speed || 0) - (b.base?.Speed || 0);
+                break;
+            case "total":
+                const totalA = Object.values(a.base || {}).reduce((sum, val) => sum + val, 0);
+                const totalB = Object.values(b.base || {}).reduce((sum, val) => sum + val, 0);
+                comparison = totalA - totalB;
+                break;
+            default:
+                comparison = a.id - b.id;
+        }
+        
+        return sortOrder === "asc" ? comparison : -comparison;
+    });
+
+    const handleSort = (field) => {
+        if (sortBy === field) {
+            setSortOrder(sortOrder === "asc" ? "desc" : "asc");
+        } else {
+            setSortBy(field);
+            setSortOrder("asc");
+        }
+    };
 
     if (loading) {
         return <div className="loading">🔄 Chargement...</div>
@@ -155,6 +200,57 @@ const PokeList = ({ searchQuery = "" }) => {
                         }}
                     >
                         {type}
+                    </button>
+                ))}
+            </div>
+
+            {/* SORT BUTTONS */}
+            <div style={{ 
+                display: 'flex', 
+                justifyContent: 'center', 
+                gap: '10px', 
+                flexWrap: 'wrap', 
+                marginBottom: '30px', 
+                padding: '0 40px' 
+            }}>
+                <span style={{ color: 'rgba(255,255,255,0.7)', fontSize: '0.9rem', alignSelf: 'center', fontWeight: '600', marginRight: '10px' }}>
+                    TRIER PAR:
+                </span>
+                {[
+                    { field: 'id', label: 'ID', icon: '#️⃣' },
+                    { field: 'name', label: 'Nom', icon: '🔤' },
+                    { field: 'total', label: 'Puissance', icon: '💪' },
+                    { field: 'hp', label: 'HP', icon: '❤️' },
+                    { field: 'attack', label: 'Attaque', icon: '⚔️' },
+                    { field: 'defense', label: 'Défense', icon: '🛡️' },
+                    { field: 'speed', label: 'Vitesse', icon: '⚡' }
+                ].map(({ field, label, icon }) => (
+                    <button
+                        key={field}
+                        onClick={() => handleSort(field)}
+                        style={{
+                            padding: '10px 20px',
+                            borderRadius: '12px',
+                            border: 'none',
+                            cursor: 'pointer',
+                            fontWeight: '700',
+                            fontSize: '0.8rem',
+                            letterSpacing: '0.5px',
+                            color: 'white',
+                            background: sortBy === field 
+                                ? 'linear-gradient(135deg, #667eea, #764ba2)' 
+                                : 'rgba(255,255,255,0.05)',
+                            boxShadow: sortBy === field 
+                                ? '0 0 15px rgba(102, 126, 234, 0.5)' 
+                                : 'none',
+                            transform: sortBy === field ? 'scale(1.05)' : 'scale(1)',
+                            transition: 'all 0.3s ease',
+                            display: 'flex',
+                            alignItems: 'center',
+                            gap: '5px'
+                        }}
+                    >
+                        {icon} {label} {sortBy === field && (sortOrder === 'asc' ? '↑' : '↓')}
                     </button>
                 ))}
             </div>

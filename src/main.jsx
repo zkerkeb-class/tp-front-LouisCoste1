@@ -5,6 +5,8 @@ import App from './App.jsx'
 import { BrowserRouter, Routes, Route } from "react-router";
 import PokemonDetails from './screens/pokemonDetails.jsx';
 import AddPokemon from './screens/addPokemon.jsx';
+import Dashboard from './screens/dashboard.jsx';
+import Compare from './screens/compare.jsx';
 
 createRoot(document.getElementById('root')).render(
  <BrowserRouter>
@@ -12,6 +14,8 @@ createRoot(document.getElementById('root')).render(
         <Route path="/" element={<App />} />
         <Route path="/pokemonDetails/:id" element={<PokemonDetails />} />
         <Route path="/add" element={<AddPokemon />} />
+        <Route path="/dashboard" element={<Dashboard />} />
+        <Route path="/compare" element={<Compare />} />
     </Routes>
 </BrowserRouter>
 ,

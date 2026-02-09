@@ -10,6 +10,69 @@ function App() {
         Pokedex<span className="ultra">Ultra</span>
       </h1>
       
+      {/* Bouton Dashboard */}
+      <div style={{ display: 'flex', justifyContent: 'center', gap: '20px', marginBottom: '30px', flexWrap: 'wrap' }}>
+        <Link 
+          to="/dashboard" 
+          style={{
+            padding: '15px 40px',
+            borderRadius: '25px',
+            background: 'linear-gradient(145deg, #00c6ff, #0072ff)',
+            color: 'white',
+            textDecoration: 'none',
+            fontSize: '1.1rem',
+            fontWeight: '700',
+            boxShadow: '0 0 20px rgba(0, 114, 255, 0.6), 0 5px 15px rgba(0, 0, 0, 0.3)',
+            transition: 'all 0.3s ease',
+            display: 'inline-flex',
+            alignItems: 'center',
+            gap: '10px',
+            textTransform: 'uppercase',
+            letterSpacing: '1px'
+          }}
+          onMouseEnter={(e) => {
+            e.currentTarget.style.transform = 'translateY(-3px)';
+            e.currentTarget.style.boxShadow = '0 0 30px rgba(0, 114, 255, 0.8), 0 8px 20px rgba(0, 0, 0, 0.4)';
+          }}
+          onMouseLeave={(e) => {
+            e.currentTarget.style.transform = 'translateY(0)';
+            e.currentTarget.style.boxShadow = '0 0 20px rgba(0, 114, 255, 0.6), 0 5px 15px rgba(0, 0, 0, 0.3)';
+          }}
+        >
+          📊 Dashboard
+        </Link>
+        
+        <Link 
+          to="/compare" 
+          style={{
+            padding: '15px 40px',
+            borderRadius: '25px',
+            background: 'linear-gradient(145deg, #f12711, #f5af19)',
+            color: 'white',
+            textDecoration: 'none',
+            fontSize: '1.1rem',
+            fontWeight: '700',
+            boxShadow: '0 0 20px rgba(241, 39, 17, 0.6), 0 5px 15px rgba(0, 0, 0, 0.3)',
+            transition: 'all 0.3s ease',
+            display: 'inline-flex',
+            alignItems: 'center',
+            gap: '10px',
+            textTransform: 'uppercase',
+            letterSpacing: '1px'
+          }}
+          onMouseEnter={(e) => {
+            e.currentTarget.style.transform = 'translateY(-3px)';
+            e.currentTarget.style.boxShadow = '0 0 30px rgba(241, 39, 17, 0.8), 0 8px 20px rgba(0, 0, 0, 0.4)';
+          }}
+          onMouseLeave={(e) => {
+            e.currentTarget.style.transform = 'translateY(0)';
+            e.currentTarget.style.boxShadow = '0 0 20px rgba(241, 39, 17, 0.6), 0 5px 15px rgba(0, 0, 0, 0.3)';
+          }}
+        >
+          ⚔️ Comparateur
+        </Link>
+      </div>
+      
       <main>
         <Pokelist />
       </main>
