@@ -1,0 +1,367 @@
+.pokemon-details-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.details-header {
+    margin-bottom: 30px;
+}
+
+.details-header h1 {
+    color: #1f2937;
+    margin: 10px 0;
+}
+
+.back-link {
+    display: inline-block;
+    color: #3b82f6;
+    text-decoration: none;
+    font-weight: 500;
+    margin-bottom: 10px;
+}
+
+.back-link:hover {
+    color: #2563eb;
+}
+
+.details-content {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: 30px;
+}
+
+.details-image-section {
+    border-radius: 12px;
+    padding: 30px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    position: relative;
+    overflow: hidden;
+}
+
+.details-image-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: radial-gradient(circle at 50% 50%, rgba(255,255,255,0.2), transparent 70%);
+    pointer-events: none;
+}
+
+.details-image {
+    width: 100%;
+    max-width: 350px;
+    height: auto;
+    object-fit: contain;
+}
+
+.details-info-section {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.info-card {
+    border-radius: 12px;
+    padding: 25px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    position: relative;
+    overflow: hidden;
+}
+
+.info-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: radial-gradient(circle at 50% 50%, rgba(255,255,255,0.15), transparent 70%);
+    pointer-events: none;
+}
+
+.info-card h2 {
+    color: white;
+    margin-top: 0;
+    margin-bottom: 20px;
+    font-size: 22px;
+    border-bottom: 2px solid rgba(255, 255, 255, 0.3);
+    padding-bottom: 10px;
+    position: relative;
+    z-index: 1;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.info-row {
+    display: flex;
+    justify-content: space-between;
+    padding: 12px 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+    position: relative;
+    z-index: 1;
+}
+
+.info-row:last-child {
+    border-bottom: none;
+}
+
+.info-label {
+    font-weight: 600;
+    color: rgba(255, 255, 255, 0.9);
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+.info-value {
+    color: white;
+    font-weight: 500;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+.types-container {
+    display: flex;
+    gap: 8px;
+}
+
+.type-badge {
+    padding: 6px 12px;
+    border-radius: 6px;
+    font-size: 12px;
+    font-weight: 600;
+    color: white;
+    text-transform: uppercase;
+}
+
+/* Stats bars */
+.stat-bar {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 12px;
+    position: relative;
+    z-index: 1;
+}
+
+.stat-label {
+    font-weight: 600;
+    color: rgba(255, 255, 255, 0.9);
+    min-width: 80px;
+    font-size: 14px;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+.stat-progress {
+    flex: 1;
+    height: 20px;
+    background: rgba(0, 0, 0, 0.2);
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.stat-fill {
+    height: 100%;
+    background: linear-gradient(90deg, rgba(255,255,255,0.7), rgba(255,255,255,0.9));
+    transition: width 0.3s ease;
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+}
+
+.stat-value {
+    font-weight: 700;
+    color: white;
+    min-width: 40px;
+    text-align: right;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
+}
+
+/* Action buttons */
+.action-buttons {
+    display: flex;
+    gap: 15px;
+    margin-top: 20px;
+}
+
+.edit-button, .delete-button, .save-button, .cancel-button {
+    flex: 1;
+    padding: 14px 24px;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.edit-button {
+    background-color: #3b82f6;
+    color: white;
+}
+
+.edit-button:hover {
+    background-color: #2563eb;
+}
+
+.delete-button {
+    background-color: #ef4444;
+    color: white;
+}
+
+.delete-button:hover {
+    background-color: #dc2626;
+}
+
+.save-button {
+    background-color: #10b981;
+    color: white;
+}
+
+.save-button:hover {
+    background-color: #059669;
+}
+
+.cancel-button {
+    background-color: #6b7280;
+    color: white;
+}
+
+.cancel-button:hover {
+    background-color: #4b5563;
+}
+
+/* Edit fields */
+.edit-field {
+    margin-bottom: 15px;
+}
+
+.edit-field label {
+    display: block;
+    font-weight: 600;
+    color: #374151;
+    margin-bottom: 6px;
+    font-size: 14px;
+}
+
+.edit-field input {
+    width: 100%;
+    padding: 10px 12px;
+    border: 2px solid #d1d5db;
+    border-radius: 6px;
+    font-size: 14px;
+    transition: border-color 0.2s;
+}
+
+.edit-field input:focus {
+    outline: none;
+    border-color: #3b82f6;
+}
+
+/* Modal */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.modal-content {
+    background: white;
+    padding: 30px;
+    border-radius: 12px;
+    max-width: 500px;
+    width: 90%;
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+}
+
+.modal-content h2 {
+    margin-top: 0;
+    color: #1f2937;
+}
+
+.modal-warning {
+    color: #dc2626;
+    font-weight: 600;
+    margin: 15px 0;
+}
+
+.modal-buttons {
+    display: flex;
+    gap: 15px;
+    margin-top: 25px;
+}
+
+.confirm-delete-button, .cancel-delete-button {
+    flex: 1;
+    padding: 12px 24px;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.confirm-delete-button {
+    background-color: #ef4444;
+    color: white;
+}
+
+.confirm-delete-button:hover {
+    background-color: #dc2626;
+}
+
+.cancel-delete-button {
+    background-color: #e5e7eb;
+    color: #374151;
+}
+
+.cancel-delete-button:hover {
+    background-color: #d1d5db;
+}
+
+/* Loading and error states */
+.loading, .error {
+    text-align: center;
+    padding: 60px 20px;
+    font-size: 18px;
+}
+
+.error {
+    color: #dc2626;
+}
+
+/* Type colors */
+.poke-type-normal { background-color: #A8A878; }
+.poke-type-fire { background-color: #F08030; }
+.poke-type-water { background-color: #6890F0; }
+.poke-type-grass { background-color: #78C850; }
+.poke-type-electric { background-color: #F8D030; }
+.poke-type-ice { background-color: #98D8D8; }
+.poke-type-fighting { background-color: #C03028; }
+.poke-type-poison { background-color: #A040A0; }
+.poke-type-ground { background-color: #E0C068; }
+.poke-type-flying { background-color: #A890F0; }
+.poke-type-psychic { background-color: #F85888; }
+.poke-type-bug { background-color: #A8B820; }
+.poke-type-rock { background-color: #B8A038; }
+.poke-type-ghost { background-color: #705898; }
+.poke-type-dragon { background-color: #7038F8; }
+.poke-type-dark { background-color: #705848; }
+.poke-type-steel { background-color: #B8B8D0; }
+.poke-type-fairy { background-color: #EE99AC; }
+
+/* Responsive */
+@media (max-width: 768px) {
+    .details-content {
+        grid-template-columns: 1fr;
+    }
+}
