@@ -71,6 +71,36 @@ function App() {
         >
           ⚔️ Comparateur
         </Link>
+
+        <Link 
+          to="/arena" 
+          style={{
+            padding: '15px 40px',
+            borderRadius: '25px',
+            background: 'linear-gradient(145deg, #ff6b6b, #ee5a6f)',
+            color: 'white',
+            textDecoration: 'none',
+            fontSize: '1.1rem',
+            fontWeight: '700',
+            boxShadow: '0 0 20px rgba(238, 90, 111, 0.6), 0 5px 15px rgba(0, 0, 0, 0.3)',
+            transition: 'all 0.3s ease',
+            display: 'inline-flex',
+            alignItems: 'center',
+            gap: '10px',
+            textTransform: 'uppercase',
+            letterSpacing: '1px'
+          }}
+          onMouseEnter={(e) => {
+            e.currentTarget.style.transform = 'translateY(-3px)';
+            e.currentTarget.style.boxShadow = '0 0 30px rgba(238, 90, 111, 0.8), 0 8px 20px rgba(0, 0, 0, 0.4)';
+          }}
+          onMouseLeave={(e) => {
+            e.currentTarget.style.transform = 'translateY(0)';
+            e.currentTarget.style.boxShadow = '0 0 20px rgba(238, 90, 111, 0.6), 0 5px 15px rgba(0, 0, 0, 0.3)';
+          }}
+        >
+          🏟️ ARÈNE
+        </Link>
       </div>
       
       <main>

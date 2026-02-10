@@ -7,6 +7,8 @@ import PokemonDetails from './screens/pokemonDetails.jsx';
 import AddPokemon from './screens/addPokemon.jsx';
 import Dashboard from './screens/dashboard.jsx';
 import Compare from './screens/compare.jsx';
+import Battle from './screens/battle.jsx';
+import Arena from './screens/arena.jsx';
 
 createRoot(document.getElementById('root')).render(
  <BrowserRouter>
@@ -16,6 +18,8 @@ createRoot(document.getElementById('root')).render(
         <Route path="/add" element={<AddPokemon />} />
         <Route path="/dashboard" element={<Dashboard />} />
         <Route path="/compare" element={<Compare />} />
+        <Route path="/battle" element={<Battle />} />
+        <Route path="/arena" element={<Arena />} />
     </Routes>
 </BrowserRouter>
 ,

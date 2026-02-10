@@ -1,5 +1,5 @@
 import { useRef } from "react";
-import { Link } from "react-router";
+import { Link, useNavigate } from "react-router";
 
 import './index.css';
 import PokeTitle from "./pokeTitle";
@@ -35,6 +35,7 @@ const singleTypeGradients = {
 
 const PokeCard = ({ pokemon }) => {
     const cardRef = useRef(null);
+    const navigate = useNavigate();
 
     // Logique du fond de carte (Double gradient ou Simple)
     let backgroundStyle;
@@ -77,6 +78,30 @@ const PokeCard = ({ pokemon }) => {
         card.style.setProperty('--my', `50%`);
     };
 
+    const handleBattleClick = async (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        
+        // Choisir un adversaire aléatoire
+        try {
+            const res = await fetch('http://localhost:3000/pokemons?page=1');
+            const data = await res.json();
+            const randomPokemon = data.pokemons[Math.floor(Math.random() * data.pokemons.length)];
+            
+            navigate('/battle', {
+                state: {
+                    pokemon1: pokemon,
+                    pokemon2: randomPokemon,
+                    isAI: true,
+                    playerTeam: [pokemon],
+                    enemyTeam: [randomPokemon]
+                }
+            });
+        } catch (error) {
+            console.error('Error starting battle:', error);
+        }
+    };
+
     return (
         <Link to={`/pokemonDetails/${pokemon.id}`} className="card-wrapper">
             <div 
@@ -88,6 +113,32 @@ const PokeCard = ({ pokemon }) => {
             >
                 <div className="glare-overlay"></div>
 
+
+                {/* Stats de combat */}
+                <div className="battle-stats">
+                    <div className="stat-badge level">
+                        Niv. {pokemon.level || 5}
+                    </div>
+                    {pokemon.wins > 0 && (
+                        <div className="stat-badge wins">
+                            ✅ {pokemon.wins}
+                        </div>
+                    )}
+                    {pokemon.shiny && (
+                        <div className="stat-badge shiny">
+                            ✨ SHINY
+                        </div>
+                    )}
+                </div>
+
+                {/* Bouton de combat rapide */}
+                <button 
+                    className="quick-battle-btn"
+                    onClick={handleBattleClick}
+                    title="Combat rapide !"
+                >
+                    ⚔️
+                </button>
                 <div className="img-container-3d">
                     <PokeImage imageUrl={pokemon.image} />
                 </div>
